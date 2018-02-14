@@ -52,22 +52,8 @@ def main():
     url = "https://docs.google.com/spreadsheets/d/14feIvAtETBQ7eAh_468PqpzyfZiR_RNJuku5nbOVJ6U/export?format=csv&id=14feIvAtETBQ7eAh_468PqpzyfZiR_RNJuku5nbOVJ6U&gid=290850126"
     download_data(url)
     # Загрузить данные
-    #ldata = get_data_from_file(tmpdata)
     person = TPerson("Иванов", "Иван", "Иванович", "12.12.2004", "чтение, музыка, программирование")
-    
-    for i in ldata:
-        person.myevents.append(i)
-    n = 0
-    for i in person.myevents:
-        n += 1
-        print("---------------")
-        print("Событие №%s"%(n))
-        for j in i:
-            print("\t %s"%(j))
-        print("----------------")
-    # Загрузить критерии
-    
-    # Анализ
+    person.add_event(get_data_from_file(tmpdata))
     
     # Вывод рекомендаций
     
