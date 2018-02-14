@@ -10,11 +10,14 @@ class TEvent():
     def __init__(self,data):
         """
         """
-        data = data.split(";")
+        print(data)
+        #data = data.split(";")
+        print(data[1])
+        print("------------")
         self.name = data[1] #название
         self.date = data[2] #дата проведения
         self.level = data[3] #уровень из описания
-        x=" ".join(self.name,self.level)
+        x=self.name+self.level
         self.level_of_event = self.detect_level(x)
                                 # уровень мероприятия [0 - "школа", 1 - "город", 2 - "регион", 3 - "страна", 4 - "мир"]
         self.type_of_event = self.detect_type1(x)
@@ -23,13 +26,13 @@ class TEvent():
         self.school_class = data[5] #класс ученика на момент проведения события
         self.tutor = data[6] #руководитель
         self.place_of_event = data[7] #результат ученика
-        self.description = data[8] #описание
+        #self.description = data[8] #описание
         
-        z = self.detect_type2()
+        z = self.detect_type2(x)
         
         print(z)
             
-    def detect_level(stroka):
+    def detect_level(self,stroka):
         """
         """
         status = 0
@@ -43,7 +46,7 @@ class TEvent():
             status = 4
         return status
         
-    def detect_type1(stroka):
+    def detect_type1(self,stroka):
         """ форма мероприятия
         """
         type_of_event = 1
