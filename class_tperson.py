@@ -15,6 +15,15 @@ class TPerson():
         self.hard_skill = hard_skill
         self.soft_skill = soft_skill    
         self.types_events = ["олимпиада", "нпк", "конкурс", "спорт"]
+        self.prof = []
+        buf = ["ученый по профилю", "аналитик", "педагог по профилю" ]
+        self.prof.append(buf)
+        buf = ["менеджер", "авиаинженер", "ученый", "врач"]
+        self.prof.append(buf)
+        buf = ["актер", "кондитер", "парикмахер", "дизайнер"]
+        self.prof.append(buf)        
+        buf = ["спортивный психолог", "спортсмен", "тренер", "спортивный комментатор", "спасатель", "пожарный", "военный", "полицейский"]
+        self.prof.append(buf)        
     
     def add_event(self,data):
         """
@@ -58,8 +67,14 @@ class TPerson():
         print("      jgs  ) /__ \__  ) (\ \___")
         print("          (___)))__))(__))(__)))")
         print("")
-        print("### Резултат анлиза")
-        print("\t\t %s"%(self.types_events [m]))
+        print("### Результат анализа")
+        for i in range(len(score)):
+            print("\t\t ------==> %s : \t\t %s <==-------"%(self.types_events[i], score[i]))
+        
+        print("У вас отмечена активность в %s"%(self.types_events[m]))
+        print("Рекомендуемый набор профессий:")
+        for i in self.prof[m]:
+            print("\t %s"%(i))
         print("---------------")
 
             
