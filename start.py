@@ -54,6 +54,7 @@ def main():
     # Загрузить данные
     person = TPerson("Иванов", "Иван", "Иванович", "12.12.2004", "чтение, музыка, программирование")
     person.add_event(get_data_from_file(tmpdata))
+    person.update_status()
     
     # Вывод рекомендаций
     

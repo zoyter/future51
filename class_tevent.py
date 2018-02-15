@@ -10,10 +10,6 @@ class TEvent():
     def __init__(self,data):
         """
         """
-        print(data)
-        #data = data.split(";")
-        print(data[1])
-        print("------------")
         self.name = data[1] #название
         self.date = data[2] #дата проведения
         self.level = data[3] #уровень из описания
@@ -28,9 +24,28 @@ class TEvent():
         self.place_of_event = data[7] #результат ученика
         #self.description = data[8] #описание
         
-        z = self.detect_type2(x)
+        self.keywords_events = []
         
-        print(z)
+        self.types_events = ["олимпиада", "нпк", "конкурс", "спорт"]
+        
+        self.keywords_score = [0,0,0,0]
+        # Олимпиада
+        buf = ["олимпиада", "чемпионат"]        
+        self.keywords_events.append(buf)
+        # НПК
+        buf = ["конференция", "чемпионат"]        
+        self.keywords_events.append(buf)
+        # Конкурс
+        # эстафета пробег турнир первенство соревнование чемпионат 
+        buf = ["конкус", "чемпионат"]        
+        self.keywords_events.append(buf)                
+        # Спорт
+        buf = ["атлетик", "пробег", "шахмат", "акробат", "старт", "спорт"]
+        self.keywords_events.append(buf)
+        
+        self.detect_type2(x)
+        
+        #print(z)
             
     def detect_level(self,stroka):
         """
@@ -56,43 +71,28 @@ class TEvent():
     
     def detect_type2(self,data):
         """ тип мероприятия
-        """
-        # [участие - 0, 3 место - 1, 2 место - 2, 3 место - 3]
-        #
-        # [олимпиады
-        #    [школьный[1,3,3,4],муниципальный[5,7,7,10],региональный[10,12,12,15],заочные_ВСеросс[10,12,12,15],дистанционные[4,6,7,8]],
-        #  НПК
-        #    [школьный[4,6,6,6],муниципальный[7,15,15,15],региональный[9,20,20,20],Всеросс[18,25,25,25],что_то_еще[0,0,0,0]],
-        #  конкурсы / фестивали / интеллектуальные_игры
-        #    [школьный[4,6,6,6],муниципальный[5,10,10,10],региональный[6,15,15,15],Всеросс[7,20,20,20],что_то_еще[0,0,0,0],
-        #  спорт
-        #    [школьный[3,4,4,4],муниципальный[5,10,10,10],региональный[9,15,15,15],что_то_еще[0,0,0,0],что_то_еще[0,0,0,0]]
-        #
-        types_events = ["олимпиада", "нпк", "конкурс", "спорт"]
-        keywords_events = []
-        score = []
-        # Олимпиада
-        buf = ["олимпиада", "чемпионат"]        
-        keywords_events.append(buf)
-        # НПК
-        buf = ["конференция", "чемпионат"]        
-        keywords_events.append(buf)
-        # Конкурс
-        # эстафета пробег турнир первенство соревнование чемпионат 
-        buf = ["конкус", "чемпионат"]        
-        keywords_events.append(buf)                
-        # Спорт
-        buf = ["атлетик", "пробег", "шахмат", "акробат", "старт", "спорт"]
-        keywords_events.append(buf)
-        s = 0
-        r = ""
-        for i in keywords_events:
-            print(i)
-            
+        """    
+        #buf = data.split(" ")
+        #stroka.lower().count("заочн")
+        self.keywords_score
+        self.keywords_events
+        
+        for i in range(len(self.keywords_events)):
+            c = 0
+            for j in self.keywords_events[i]:
+                c += data.count(j)
+            self.keywords_score[i] = c
+        print(self.keywords_score)
+
+
+        
+        #for i in buf:
+            #for j in range(len(self.keywords_events)):
+                #if i in self.keywords_events[j]:
+                    #self.score[j] += 1
         
         
-        return r
-        
+        print("----------")
         
 
             
